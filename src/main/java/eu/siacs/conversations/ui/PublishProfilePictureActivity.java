@@ -111,7 +111,7 @@ public class PublishProfilePictureActivity extends XmppActivity implements XmppC
             this.avatarUri = savedInstanceState.getParcelable("uri");
             this.handledExternalUri.set(savedInstanceState.getBoolean("handle_external_uri",false));
         }
-
+        //pasando la foto
         startActivity(new Intent(getApplicationContext(),StartConversationActivity.class));
     }
 

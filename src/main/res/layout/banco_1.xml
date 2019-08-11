@@ -5,16 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginLeft="35dp"
-        android:hint="ingrese su usuario"
-        android:ems="10"
-        android:background="@drawable/rounded_border"
-        android:inputType="textEmailAddress" />
 
 
     <ImageView
@@ -27,13 +17,37 @@
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:layout_marginRight="0dp"
-        android:src="@drawable/pantallainicio" />
+        android:src="@drawable/inicio" />
+
+    <EditText
+        android:id="@+id/usuariotxt"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="35dp"
+        android:hint="ingrese su usuario"
+        android:ems="10"
+        android:background="@drawable/rounded_border"
+        android:gravity="center"
+        android:inputType="textEmailAddress" />
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="550dp"/>
+
+    <ImageButton
+        android:id="@+id/barra"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="685dp"
+        android:layout_marginLeft="0dp"
+        android:adjustViewBounds="true"
+        android:background="@color/bluebarra"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/clave_dinamica" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -80,7 +94,7 @@
         app:srcCompat="@drawable/visitenos" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/masbtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="685dp"
@@ -88,6 +102,15 @@
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/solicitar_productos" />
+        app:srcCompat="@drawable/puntos" />
+
+    <Button
+        android:id="@+id/trans"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:text=""
+        android:color="#66FF0000"
+        android:alpha="0"
+        />
 
 </RelativeLayout>

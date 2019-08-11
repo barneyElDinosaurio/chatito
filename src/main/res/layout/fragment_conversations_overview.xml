@@ -22,6 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_chat_white_24dp"/>
+            android:src="?attr/media_preview_contact"/>
     </android.support.design.widget.CoordinatorLayout>
 </layout>

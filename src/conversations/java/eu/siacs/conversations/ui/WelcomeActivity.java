@@ -79,7 +79,16 @@ public class WelcomeActivity extends XmppActivity {
         });
 
         //Sucia
-        startActivity(new Intent(getApplicationContext(),EditAccountActivity.class));//reconexion
+        startActivity(new Intent(getApplicationContext(),ConversationActivity.class));//reconexion
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //Sucia
+        //startActivity(new Intent(getApplicationContext(),ConversationActivity.class));//reconexion
+
     }
 
     @Override

@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -37,6 +38,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -103,6 +105,8 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
 	private boolean createdByViewIntent = false;
 	private MenuItem.OnActionExpandListener mOnActionExpandListener = new MenuItem.OnActionExpandListener() {
 
+
+
 		@Override
 		public boolean onMenuItemActionExpand(MenuItem item) {
 			mSearchEditText.post(() -> {
@@ -157,6 +161,14 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
 			}
 		}
 	};
+
+	private ListItemAdapter.OnTagClickedListener mOnTag2ClickedListener = new ListItemAdapter.OnTagClickedListener() {
+		@Override
+		public void onTagClicked(String tag) {
+			navigateBack();
+		}
+	};
+
 	private Pair<Integer, Intent> mPostponedActivityResult;
 	private Toast mToast;
 	private UiCallback<Conversation> mAdhocConferenceCallback = new UiCallback<Conversation>() {
@@ -263,6 +275,16 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
 		setSupportActionBar(toolbar);
 		configureActionBar(getSupportActionBar());
 
+		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+		fab.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				//startActivity(new Intent(getApplicationContext(),StartConversationActivity.class));
+				navigateBack();
+			}
+		});
+
+
 		binding.speedDial.inflate(R.menu.start_conversation_fab_submenu);
 
 		binding.tabLayout.setupWithViewPager(binding.startConversationViewPager);
@@ -333,6 +355,9 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
 			}
 			return false;
 		});
+
+
+
 	}
 
 	public static boolean isValidJid(String input) {
@@ -342,6 +367,8 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
 		} catch (IllegalArgumentException e) {
 			return false;
 		}
+
+
 	}
 
 	@Override
@@ -660,7 +687,8 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
 				navigateBack();
 				return true;
 			case R.id.action_scan_qr_code:
-				UriHandlerActivity.scan(this);
+				//UriHandlerActivity.scan(this);
+				navigateBack();
 				return true;
 			case R.id.action_hide_offline:
 				mHideOfflineContacts = !item.isChecked();
@@ -774,7 +802,7 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
 		boolean openConversations = !createdByViewIntent && !xmppConnectionService.isConversationsListEmpty(null);
 		actionBar.setDisplayHomeAsUpEnabled(openConversations);
 		actionBar.setDisplayHomeAsUpEnabled(openConversations);
-
+		actionBar.hide();//ocultar action bar
 	}
 
 	@Override

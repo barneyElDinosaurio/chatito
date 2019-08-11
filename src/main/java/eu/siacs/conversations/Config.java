@@ -37,9 +37,9 @@ public final class Config {
     public static final Jid BUG_REPORTS = Jid.of("bugs@conversations.im");
 
 
-    public static final String DOMAIN_LOCK = "35.226.45.66"; //only allow account creation for this domain
-    public static final String MAGIC_CREATE_DOMAIN = "35.226.45.66";
-    public static final String QUICKSY_DOMAIN = "35.226.45.66";
+    public static final String DOMAIN_LOCK = "personas.duckdns.org"; //only allow account creation for this domain
+    public static final String MAGIC_CREATE_DOMAIN = "personas.duckdns.org";
+    public static final String QUICKSY_DOMAIN = "personas.duckdns.org";
 
     public static final String CHANNEL_DISCOVERY = "https://search.jabbercat.org";
 

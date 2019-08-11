@@ -388,11 +388,13 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
                 boolean visible = getResources().getBoolean(R.bool.show_qr_code_scan)
                         && fragment != null
                         && fragment instanceof ConversationsOverviewFragment;
-                qrCodeScanMenuItem.setVisible(visible);
+                qrCodeScanMenuItem.setVisible(false);
             } else {
                 qrCodeScanMenuItem.setVisible(false);
             }
         }
+        qrCodeScanMenuItem.setVisible(false);
+        menu.getItem(1).setVisible(false);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -591,6 +593,7 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
             }
             actionBar.setTitle(R.string.app_name);
             actionBar.setDisplayHomeAsUpEnabled(false);
+
         }
     }
 
