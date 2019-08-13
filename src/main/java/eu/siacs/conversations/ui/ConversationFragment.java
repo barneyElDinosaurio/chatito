@@ -52,6 +52,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import java.security.KeyStoreException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -82,6 +83,7 @@ import eu.siacs.conversations.entities.Transferable;
 import eu.siacs.conversations.entities.TransferablePlaceholder;
 import eu.siacs.conversations.http.HttpDownloadConnection;
 import eu.siacs.conversations.persistance.FileBackend;
+import eu.siacs.conversations.services.MemorizingTrustManager;
 import eu.siacs.conversations.services.MessageArchiveService;
 import eu.siacs.conversations.services.QuickConversationsService;
 import eu.siacs.conversations.services.XmppConnectionService;
@@ -972,7 +974,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
             ConversationMenuConfigurator.configureEncryptionMenu(conversation, menu);
         }
         menu.getItem(2).setVisible(false);
-        menu.getItem(5).setVisible(false);
+        menu.getItem(5).setVisible(true);
         menu.getItem(3).setVisible(false);
         menu.getItem(8).setVisible(false);
 
@@ -1212,7 +1214,45 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 startActivity(intent);
                 break;
             case R.id.action_invite:
-                startActivityForResult(ChooseContactActivity.create(activity, conversation), REQUEST_INVITE_TO_CONVERSATION);
+                //cerrar sesion
+
+                if (!ConversationsActivity.xmpp.getAccounts().isEmpty()) {
+
+
+
+
+	/*					xmppConnectionServiceBound=false;
+						XmppActivity.xmppConnectionService.stopSelf();*/
+
+                    final String PREFS_NAME = "MyPrefsFile";
+
+                    SharedPreferences settings = getActivity().getSharedPreferences(PREFS_NAME, 0);
+                    settings.edit().putBoolean("vuelveEditAcc", true).commit();
+                    settings.edit().putString("jid",ConversationsActivity.xmpp.getAccounts().get(0).getUsername()+"@35.225.103.175").commit();
+                    settings.edit().putString("pass",ConversationsActivity.xmpp.getAccounts().get(0).getPassword()).commit();
+
+
+                    MemorizingTrustManager mtm = ConversationsActivity.xmpp.getMemorizingTrustManager();
+                    try {
+
+                        while(mtm.getCertificates().hasMoreElements()) {
+
+                            String cert = mtm.getCertificates().nextElement();
+
+
+                            mtm.deleteCertificate(cert);
+                        }
+                    } catch (KeyStoreException e) {
+                        e.printStackTrace();
+                    }
+
+                    ConversationsActivity.xmpp.deleteAccount(ConversationsActivity.xmpp.getAccounts().get(0));
+                    //xmppConnectionService.reconnectAccountInBackground(xmppConnectionService.getAccounts().get(0));
+
+
+                }
+                getActivity().finishAffinity();
+                //startActivityForResult(ChooseContactActivity.create(activity, conversation), REQUEST_INVITE_TO_CONVERSATION);
                 break;
             case R.id.action_clear_history:
                 clearHistoryDialog(conversation);

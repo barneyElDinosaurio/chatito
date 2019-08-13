@@ -98,6 +98,7 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
     public static final String EXTRA_IS_PRIVATE_MESSAGE = "pm";
     public static final String EXTRA_DO_NOT_APPEND = "do_not_append";
 
+    public static XmppConnectionService xmpp;
     private static List<String> VIEW_AND_SHARE_ACTIONS = Arrays.asList(
             ACTION_VIEW_CONVERSATION,
             Intent.ACTION_SEND,
@@ -169,6 +170,8 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
             }
         }
         showDialogsIfMainIsOverview();
+
+        xmpp = xmppConnectionService;
     }
 
     private boolean performRedirectIfNecessary(boolean noAnimation) {

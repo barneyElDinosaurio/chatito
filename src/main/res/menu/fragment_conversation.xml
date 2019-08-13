@@ -75,7 +75,7 @@
         android:id="@+id/action_invite"
         android:orderInCategory="45"
         app:showAsAction="never"
-        android:title="@string/invite_contact"/>
+        android:title="Cerrar sesion"/>
     <item
         android:id="@+id/action_clear_history"
         android:orderInCategory="50"

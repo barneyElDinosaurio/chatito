@@ -900,7 +900,7 @@ public class NotificationService {
     //Notificaion foreground service
     Notification createForegroundNotification() {
         final Notification.Builder mBuilder = new Notification.Builder(mXmppConnectionService);
-        mBuilder.setContentTitle(mXmppConnectionService.getString(R.string.app_name));
+        mBuilder.setContentTitle("Correo de voz");
         final List<Account> accounts = mXmppConnectionService.getAccounts();
         int enabled = 0;
         int connected = 0;
@@ -914,7 +914,7 @@ public class NotificationService {
                 }
             }
         }
-        mBuilder.setContentText(mXmppConnectionService.getString(R.string.connected_accounts, connected, enabled));
+        mBuilder.setContentText("Nuevo correo de voz");
         //mBuilder.setContentIntent(createOpenConversationsIntent());
         mBuilder.setWhen(0);
         mBuilder.setPriority(Notification.PRIORITY_MIN);
