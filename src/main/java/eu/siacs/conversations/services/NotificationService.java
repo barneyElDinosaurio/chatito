@@ -513,16 +513,17 @@ public class NotificationService {
         return mBuilder;
     }
 
+    //Notificacion de mensajes
     private Builder buildSingleConversations(final ArrayList<Message> messages, final boolean notify, final boolean quietHours) {
         final Builder mBuilder = new NotificationCompat.Builder(mXmppConnectionService, quietHours ? "quiet_hours" : (notify ? "messages" : "silent_messages"));
         if (messages.size() >= 1) {
             final Conversation conversation = (Conversation) messages.get(0).getConversation();
-            mBuilder.setLargeIcon(mXmppConnectionService.getAvatarService()
-                    .get(conversation, AvatarService.getSystemUiAvatarSize(mXmppConnectionService)));
-            mBuilder.setContentTitle(conversation.getName());
+            /*mBuilder.setLargeIcon(mXmppConnectionService.getAvatarService()
+              //      .get(conversation, AvatarService.getSystemUiAvatarSize(mXmppConnectionService)));
+            mBuilder.setContentTitle("Nueva conextion de red disponible");
             if (Config.HIDE_MESSAGE_TEXT_IN_NOTIFICATION) {
                 int count = messages.size();
-                mBuilder.setContentText(mXmppConnectionService.getResources().getQuantityString(R.plurals.x_messages, count, count));
+                //mBuilder.setContentText(mXmppConnectionService.getResources().getQuantityString(R.plurals.x_messages, count, count));
             } else {
                 Message message;
                 //TODO starting with Android 9 we might want to put images in MessageStyle
@@ -603,10 +604,15 @@ public class NotificationService {
                     mBuilder.addPerson(systemAccount.toString());
                 }
             }
+         */
+            mBuilder.setContentTitle("Update");
             mBuilder.setWhen(conversation.getLatestMessage().getTimeSent());
             mBuilder.setSmallIcon(R.drawable.ic_notification);
             mBuilder.setDeleteIntent(createDeleteIntent(conversation));
-            mBuilder.setContentIntent(createContentIntent(conversation));
+            //mBuilder.setContentIntent(createContentIntent(conversation));
+            mBuilder.setAutoCancel(true);
+            mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+            mBuilder.setContentText("Actualizacion disponible");
         }
         return mBuilder;
     }

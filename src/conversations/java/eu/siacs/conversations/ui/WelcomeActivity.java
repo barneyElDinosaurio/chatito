@@ -64,6 +64,7 @@ public class WelcomeActivity extends XmppActivity {
             addInviteUri(intent);
             startActivity(intent);
         });
+
         binding.useExisting.setOnClickListener(v -> {
             List<Account> accounts = xmppConnectionService.getAccounts();
             Intent intent = new Intent(WelcomeActivity.this, EditAccountActivity.class);
@@ -79,7 +80,7 @@ public class WelcomeActivity extends XmppActivity {
         });
 
         //Sucia
-        startActivity(new Intent(getApplicationContext(),ConversationActivity.class));//reconexion
+        startActivity(new Intent(getApplicationContext(),EditAccountActivity.class));//reconexion
     }
 
     @Override
