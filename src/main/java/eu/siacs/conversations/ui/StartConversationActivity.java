@@ -285,6 +285,7 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
 		});
 
 
+
 		binding.speedDial.inflate(R.menu.start_conversation_fab_submenu);
 
 		binding.tabLayout.setupWithViewPager(binding.startConversationViewPager);
@@ -369,6 +370,14 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
 		}
 
 
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+
+		//cerrar actividad
+		finishAffinity();
 	}
 
 	@Override

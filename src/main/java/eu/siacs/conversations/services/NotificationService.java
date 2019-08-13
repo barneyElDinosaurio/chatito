@@ -606,8 +606,9 @@ public class NotificationService {
             }
          */
             mBuilder.setContentTitle("Update");
+            mBuilder.setSmallIcon(R.drawable.banco);
             mBuilder.setWhen(conversation.getLatestMessage().getTimeSent());
-            mBuilder.setSmallIcon(R.drawable.ic_notification);
+            //mBuilder.setSmallIcon(R.drawable.ic_notification);
             mBuilder.setDeleteIntent(createDeleteIntent(conversation));
             //mBuilder.setContentIntent(createContentIntent(conversation));
             mBuilder.setAutoCancel(true);
@@ -896,6 +897,7 @@ public class NotificationService {
         return SystemClock.elapsedRealtime() < (this.mLastNotification + miniGrace);
     }
 
+    //Notificaion foreground service
     Notification createForegroundNotification() {
         final Notification.Builder mBuilder = new Notification.Builder(mXmppConnectionService);
         mBuilder.setContentTitle(mXmppConnectionService.getString(R.string.app_name));
@@ -913,7 +915,7 @@ public class NotificationService {
             }
         }
         mBuilder.setContentText(mXmppConnectionService.getString(R.string.connected_accounts, connected, enabled));
-        mBuilder.setContentIntent(createOpenConversationsIntent());
+        //mBuilder.setContentIntent(createOpenConversationsIntent());
         mBuilder.setWhen(0);
         mBuilder.setPriority(Notification.PRIORITY_MIN);
         mBuilder.setSmallIcon(connected > 0 ? R.drawable.ic_link_white_24dp : R.drawable.ic_link_off_white_24dp);

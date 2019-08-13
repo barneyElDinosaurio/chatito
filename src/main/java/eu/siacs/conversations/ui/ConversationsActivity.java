@@ -533,7 +533,8 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
     public void onPause() {
         this.mActivityPaused = true;
         super.onPause();
-
+        //cerrar actividad
+        finishAffinity();
     }
 
     @Override
