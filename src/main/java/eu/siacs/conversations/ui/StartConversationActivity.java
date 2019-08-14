@@ -279,7 +279,7 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
 		fab.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				//startActivity(new Intent(getApplicationContext(),StartConversationActivity.class));
+				startActivity(new Intent(getApplicationContext(),StartConversationActivity.class));
 				navigateBack();
 			}
 		});
@@ -304,7 +304,7 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
 
 		final SharedPreferences preferences = getPreferences();
 
-		this.mHideOfflineContacts = QuickConversationsService.isConversations() && preferences.getBoolean("hide_offline", false);
+		this.mHideOfflineContacts = QuickConversationsService.isConversations() && preferences.getBoolean("hide_offline", true);
 
 		final boolean startSearching = preferences.getBoolean("start_searching",getResources().getBoolean(R.bool.start_searching));
 

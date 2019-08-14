@@ -973,6 +973,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
             ConversationMenuConfigurator.configureAttachmentMenu(conversation, menu);
             ConversationMenuConfigurator.configureEncryptionMenu(conversation, menu);
         }
+
         menu.getItem(2).setVisible(false);
         menu.getItem(5).setVisible(true);
         menu.getItem(3).setVisible(false);
@@ -1348,7 +1349,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 item.setChecked(true);
                 break;
             case R.id.encryption_choice_pgp:
-                if (activity.hasPgp()) {
+                /*if (activity.hasPgp()) {
                     if (conversation.getAccount().getPgpSignature() != null) {
                         updated = conversation.setNextEncryption(Message.ENCRYPTION_PGP);
                         item.setChecked(true);
@@ -1359,7 +1360,10 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 } else {
                     activity.showInstallPgpDialog();
                     updated = false;
-                }
+                }*/
+                updated = conversation.setNextEncryption(Message.ENCRYPTION_NONE);
+                item.setChecked(true);
+
                 break;
             case R.id.encryption_choice_axolotl:
                 Log.d(Config.LOGTAG, AxolotlService.getLogprefix(conversation.getAccount())

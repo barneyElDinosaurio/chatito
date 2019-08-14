@@ -699,6 +699,7 @@ public class MessageAdapter extends ArrayAdapter<Message> implements CopyTextVie
 				if (conversation.getMode() == Conversation.MODE_SINGLE) {
 					showAvatar = true;
 					AvatarWorkerTask.loadAvatar(message, viewHolder.contact_picture, R.dimen.avatar_on_status_message);
+
 				} else if (message.getCounterpart() != null || message.getTrueCounterpart() != null || (message.getCounterparts() != null && message.getCounterparts().size() > 0)) {
 					showAvatar = true;
 					AvatarWorkerTask.loadAvatar(message, viewHolder.contact_picture, R.dimen.avatar_on_status_message);
@@ -719,6 +720,7 @@ public class MessageAdapter extends ArrayAdapter<Message> implements CopyTextVie
 
 		resetClickListener(viewHolder.message_box, viewHolder.messageBody);
 
+		/*eliminando clicks de la conversacion
 		viewHolder.contact_picture.setOnClickListener(v -> {
 			if (MessageAdapter.this.mOnContactPictureClickedListener != null) {
 				MessageAdapter.this.mOnContactPictureClickedListener
@@ -734,7 +736,7 @@ public class MessageAdapter extends ArrayAdapter<Message> implements CopyTextVie
 			} else {
 				return false;
 			}
-		});
+		});*/
 
 		final Transferable transferable = message.getTransferable();
 		if (message.isDeleted() || (transferable != null && transferable.getStatus() != Transferable.STATUS_UPLOADING)) {
