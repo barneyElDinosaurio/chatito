@@ -90,7 +90,7 @@
         android:id="@+id/action_mute"
         android:orderInCategory="70"
         app:showAsAction="never"
-        android:title="@string/disable_notifications"/>
+        android:title="Reconectar"/>
 
     <item
         android:id="@+id/action_unmute"

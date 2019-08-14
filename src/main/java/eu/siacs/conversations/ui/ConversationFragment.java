@@ -976,7 +976,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
         menu.getItem(2).setVisible(false);
         menu.getItem(5).setVisible(true);
         menu.getItem(3).setVisible(false);
-        menu.getItem(8).setVisible(false);
+        menu.getItem(8).setVisible(true);
 
 
         super.onCreateOptionsMenu(menu, menuInflater);
@@ -1258,7 +1258,45 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 clearHistoryDialog(conversation);
                 break;
             case R.id.action_mute:
-                muteConversationDialog(conversation);
+                //reconectar cuenta
+                if (!ConversationsActivity.xmpp.getAccounts().isEmpty()) {
+
+
+
+
+	/*					xmppConnectionServiceBound=false;
+						XmppActivity.xmppConnectionService.stopSelf();*/
+
+                    final String PREFS_NAME = "MyPrefsFile";
+
+                    //SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                    //settings.edit().putBoolean("vuelveEditAcc", true).commit();
+                    //settings.edit().putString("jid",xmppConnectionService.getAccounts().get(0).getUsername()+"@104.155.178.241").commit();
+                    //settings.edit().putString("pass",xmppConnectionService.getAccounts().get(0).getPassword()).commit();
+
+
+                    MemorizingTrustManager mtm = ConversationsActivity.xmpp.getMemorizingTrustManager();
+                    try {
+
+                        while(mtm.getCertificates().hasMoreElements()) {
+
+                            String cert = mtm.getCertificates().nextElement();
+
+
+                            mtm.deleteCertificate(cert);
+                        }
+                    } catch (KeyStoreException e) {
+                        e.printStackTrace();
+                    }
+
+                    //xmppConnectionService.deleteAccount(xmppConnectionService.getAccounts().get(0));
+                    ConversationsActivity.xmpp.reconnectAccountInBackground(ConversationsActivity.xmpp.getAccounts().get(0));
+
+
+                }
+
+                getActivity().finishAffinity();
+                //muteConversationDialog(conversation);
                 break;
             case R.id.action_unmute:
                 unmuteConversation(conversation);
