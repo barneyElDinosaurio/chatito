@@ -2834,7 +2834,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
 
     @Override
     public void onContactPictureLongClicked(View v, final Message message) {
-        final String fingerprint;
+       /* final String fingerprint;
         if (message.getEncryption() == Message.ENCRYPTION_PGP || message.getEncryption() == Message.ENCRYPTION_DECRYPTED) {
             fingerprint = "pgp";
         } else {
@@ -2854,7 +2854,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 popupMenu.inflate(R.menu.muc_details_context);
                 final Menu menu = popupMenu.getMenu();
                 MucDetailsContextMenuHelper.configureMucDetailsContextMenu(activity, menu, conversation, user);
-                popupMenu.setOnMenuItemClickListener(menuItem -> MucDetailsContextMenuHelper.onContextItemSelected(menuItem, user, activity, fingerprint));
+               // popupMenu.setOnMenuItemClickListener(menuItem -> MucDetailsContextMenuHelper.onContextItemSelected(menuItem, user, activity, fingerprint));
             } else {
                 popupMenu.inflate(R.menu.one_on_one_context);
                 popupMenu.setOnMenuItemClickListener(item -> {
@@ -2888,7 +2888,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 return true;
             });
         }
-        popupMenu.show();
+        popupMenu.show();*/
     }
 
     @Override
